@@ -7,7 +7,7 @@ namespace Kx.Extensions
     /// <summary>
     /// Extension for the Process class
     /// </summary>
-    public static class ProcessExtensions
+    static public class ProcessExtensions
     {
         /// <summary>
         /// Thread Access flags.
@@ -34,7 +34,7 @@ namespace Kx.Extensions
         /// <param name="dwThreadId">The identifier of the thread to be opened.</param>
         /// <returns>If the function succeeds, the return value is an open handle to the specified thread. If the function fails, the return value is NULL. To get extended error information, call GetLastError.</returns>
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
+        static extern private IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
 
         /// <summary>
         /// Suspends the specified thread.
@@ -42,7 +42,7 @@ namespace Kx.Extensions
         /// <param name="hThread">A handle to the thread that is to be suspended.</param>
         /// <returns>If the function succeeds, the return value is the thread's previous suspend count; otherwise, it is (DWORD) -1. To get extended error information, use the GetLastError function.</returns>
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern uint SuspendThread(IntPtr hThread);
+        static extern private uint SuspendThread(IntPtr hThread);
 
         /// <summary>
         /// Decrements a thread's suspend count. When the suspend count is decremented to zero, the execution of the thread is resumed.
@@ -50,12 +50,12 @@ namespace Kx.Extensions
         /// <param name="hThread">A handle to the thread to be restarted. This handle must have the THREAD_SUSPEND_RESUME access right.</param>
         /// <returns>If the function succeeds, the return value is the thread's previous suspend count. If the function fails, the return value is (DWORD) -1. To get extended error information, call GetLastError.</returns>
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern int ResumeThread(IntPtr hThread);
+        static extern private int ResumeThread(IntPtr hThread);
 
         /// <summary>
         /// Suspend the thread.
         /// </summary>
-        public static void Suspend(this Process process)
+        static public void Suspend(this Process process)
         {
             foreach (ProcessThread thread in process.Threads)
             {
@@ -69,7 +69,7 @@ namespace Kx.Extensions
         /// <summary>
         /// Resume the thread.
         /// </summary>
-        public static void Resume(this Process process)
+        static public void Resume(this Process process)
         {
             foreach (ProcessThread thread in process.Threads)
             {
