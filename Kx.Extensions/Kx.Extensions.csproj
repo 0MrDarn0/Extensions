@@ -7,6 +7,9 @@
     <Copyright>Copyright (C) Christian Schnuck</Copyright>
     <Description>Extensions for development</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/0MrDarn0/Extensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>extensions net standard core</PackageTags>
   </PropertyGroup>
 
 </Project>
